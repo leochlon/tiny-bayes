@@ -1,6 +1,6 @@
-# Pythia-14M in Lean 4
+# tiny-bayes
 
-EleutherAI/pythia-14m (revision `cf967c0a9a04383db6f7b1108d86b2962634b4ac`) defined exactly over ℝ in Lean 4 and Mathlib: all 14,067,712 parameters as float16 bit patterns, decoded exactly, and the GPT-NeoX forward pass with exact GELU. Every theorem in each folder's `Main.lean` depends only on `propext`, `Classical.choice` and `Quot.sound`.
+Pythia-14M in Lean 4, by Hassana Labs. EleutherAI/pythia-14m (revision `cf967c0a9a04383db6f7b1108d86b2962634b4ac`) defined exactly over ℝ in Lean 4 and Mathlib: all 14,067,712 parameters as float16 bit patterns, decoded exactly, and the GPT-NeoX forward pass with exact GELU. Every theorem in each folder's `Main.lean` depends only on `propext`, `Classical.choice` and `Quot.sound`.
 
 | Folder | Namespace | Contents | Modules | Theorems | Build |
 |---|---|---|---|---|---|
@@ -67,3 +67,18 @@ python3 tools/project.py build collapse CE --jobs 8
 ```
 
 `python3 tools/project.py check <NS> <dir> <tag>` rebuilds a folder from scratch in a fresh workspace, rejects `sorry`, `axiom`, `native_decide` and similar escapes, and prints each theorem of `Main.lean` with the axioms it depends on. `tools/gen_weights.py` and `tools/gen_bits.py` regenerate `W/` and `Bits/` from `model.safetensors`.
+
+## Citation
+If you use or cite this work, please credit Hassana Labs:
+
+```bibtex
+@misc{hassanalabs2026tinybayes,
+  title  = {tiny-bayes: Pythia-14M in Lean 4},
+  author = {{Hassana Labs}},
+  year   = {2026},
+  url    = {https://github.com/leochlon/tiny-bayes}
+}
+```
+
+## License
+CC BY-NC 4.0 (`LICENSE`): free to use and adapt for non-commercial purposes, with attribution to Hassana Labs. Commercial use is not permitted. The pythia-14m parameters in `exact/CON/W` and `*/Bits` are EleutherAI's, under Apache 2.0.
