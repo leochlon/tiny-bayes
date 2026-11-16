@@ -1,0 +1,5 @@
+.build/
+_check/
+.lake/
+__pycache__/
+.DS_Store
