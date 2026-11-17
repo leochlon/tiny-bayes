@@ -9,6 +9,7 @@ Pythia-14M in Lean 4, by Hassana Labs. EleutherAI/pythia-14m (revision `cf967c0a
 | `induction/upper_bound/` | `CON` | `TripleCert → ¬Claim`; bound of 941 tokens | 164 | 29 | 4 min |
 | `induction/lower_bound/` | `PRO` | normal form; `CleanCert → ClaimAt 9` | 117 | 29 | 40 s |
 | `collapse/` | `CE` | repetition theorems for every set of weights | 4 | 3 | 35 s |
+| `pinn/` | `PINN` | physics-informed networks certified through their residuals | 207 | 18 | 3 min |
 
 Build times are from scratch with 24 to 40 parallel Lean processes.
 
@@ -53,6 +54,17 @@ theorem eternal (θ : Params) (t : Token) (ht : strictArgmax (nextLogits θ [t])
 
 `CE/Model.lean` is `exact/CON/Model.lean` in the namespace `CE`; `CE/Spec.lean` defines `nextLogits`, `strictArgmax`, `argmax` and greedy decoding. `collapse` is the logit form of `length_blind`; `eternal` follows by induction on k.
 
+## PINN (`pinn/`)
+Two 1→32→32→1 tanh networks trained for u′ = −u + e⁻ᵗ, u(0) = 1 on [0, 4], with weights rounded to k/2¹⁶: N (`data/net.json`), and Ñ (`data/net_hardic.json`) with the initial condition built in, û(t) = 1 + t·Ñ(t). Both are certified through their own residuals, without using the exact solution.
+- `part1`: for every M continuously differentiable on [0, 4], every partition 0 = a₀ < … < a_K = 4 and every lo_k ≤ M′(s) + M(s) − e⁻ˢ ≤ hi_k on [a_k, a_{k+1}], every solution u satisfies e⁻ᵗ(1 − M(0)) − Σₖ hi_k w_k(t) ≤ u(t) − M(t) ≤ e⁻ᵗ(1 − M(0)) − Σₖ lo_k w_k(t), where w_k(t) = ∫ e^{−(t−s)} ds over [a_k, a_{k+1}] ∩ [0, t].
+- `part2_named`, `part2`: the 508-piece certificate `certN` bounds N's residual and keeps both sides within 2·10⁻⁴, so every solution is within 2·10⁻⁴ of N on [0, 4].
+- `part3_named`, `part3`: the 652-piece certificate `certH` does the same for û, within 3·10⁻⁴.
+- `transfer_N`, `transfer_H`: every C¹ model with the same initial value whose residual lies within a certificate's bounds satisfies the same error bound.
+
+The residual bound on each piece is a kernel-checked mean-value enclosure: the residual at the midpoint, widened by a bound on its derivative (the networks' second derivative is proved), in outward-rounded integer interval arithmetic at scale 2⁶⁴ with exp and tanh proved sound over ℝ. On each piece the two sides of `part1` are affine in e⁻ᵗ, so checking them at the partition points covers all of [0, 4]. Evaluated exactly at the partition points, the two sides stay within 1.43·10⁻⁴ for N and 2.20·10⁻⁴ for û; the largest errors against the exact solution are 1.01·10⁻⁴ and 1.68·10⁻⁴.
+
+`scripts/` has the training scripts, a 50-digit reference evaluation of both models and their residuals (`reference.py`), an exact Python copy of the interval arithmetic (`mirror.py`), and the scripts that regenerate the certificate modules (run from `pinn/`: `python3 scripts/partition.py 9e-5 1.1e-4 cert.json && python3 scripts/emit.py cert.json`).
+
 ## Build
 Lean v4.27.0-rc1 and Mathlib `fdddb3ea` (`lean-toolchain`, `lake-manifest.json`; `lake exe cache get` fetches a prebuilt Mathlib). Set `LEAN_BIN` to the `lean` binary and `LEAN_BASE_PATH` to the output of `lake env printenv LEAN_PATH`, then:
 
@@ -64,6 +76,7 @@ python3 tools/project.py build interval PRO --jobs 24
 python3 tools/project.py build induction/upper_bound CON --jobs 24
 python3 tools/project.py build induction/lower_bound PRO --jobs 24
 python3 tools/project.py build collapse CE --jobs 8
+python3 tools/project.py build pinn PINN --jobs 40
 ```
 
 `python3 tools/project.py check <NS> <dir> <tag>` rebuilds a folder from scratch in a fresh workspace, rejects `sorry`, `axiom`, `native_decide` and similar escapes, and prints each theorem of `Main.lean` with the axioms it depends on. `tools/gen_weights.py` and `tools/gen_bits.py` regenerate `W/` and `Bits/` from `model.safetensors`.

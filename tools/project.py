@@ -25,7 +25,7 @@ BANNED = ["sorry", "admit", "axiom", "macro", "macro_rules", "syntax", "elab", "
           "System.", "+native"]
 BANNED_RE = [r"@\[\s*init\b"]
 OK_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
-SIDES = ("PRO", "CON", "CE")
+SIDES = ("PRO", "CON", "CE", "PINN")
 LEAN_BIN = os.environ.get("LEAN_BIN", "lean")
 BASE = os.environ.get("LEAN_BASE_PATH", "")
 

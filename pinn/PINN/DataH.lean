@@ -1,0 +1,238 @@
+import PINN.ChkH.C000
+import PINN.ChkH.C001
+import PINN.ChkH.C002
+import PINN.ChkH.C003
+import PINN.ChkH.C004
+import PINN.ChkH.C005
+import PINN.ChkH.C006
+import PINN.ChkH.C007
+import PINN.ChkH.C008
+import PINN.ChkH.C009
+import PINN.ChkH.C010
+import PINN.ChkH.C011
+import PINN.ChkH.C012
+import PINN.ChkH.C013
+import PINN.ChkH.C014
+import PINN.ChkH.C015
+import PINN.ChkH.C016
+import PINN.ChkH.C017
+import PINN.ChkH.C018
+import PINN.ChkH.C019
+import PINN.ChkH.C020
+import PINN.ChkH.C021
+import PINN.ChkH.C022
+import PINN.ChkH.C023
+import PINN.ChkH.C024
+import PINN.ChkH.C025
+import PINN.ChkH.C026
+import PINN.ChkH.C027
+import PINN.ChkH.C028
+import PINN.ChkH.C029
+import PINN.ChkH.C030
+import PINN.ChkH.C031
+import PINN.ChkH.C032
+import PINN.ChkH.C033
+import PINN.ChkH.C034
+import PINN.ChkH.C035
+import PINN.ChkH.C036
+import PINN.ChkH.C037
+import PINN.ChkH.C038
+import PINN.ChkH.C039
+import PINN.ChkH.C040
+import PINN.ChkH.C041
+import PINN.ChkH.C042
+import PINN.ChkH.C043
+import PINN.ChkH.C044
+import PINN.ChkH.C045
+import PINN.ChkH.C046
+import PINN.ChkH.C047
+import PINN.ChkH.C048
+import PINN.ChkH.C049
+import PINN.ChkH.C050
+import PINN.ChkH.C051
+import PINN.ChkH.C052
+import PINN.ChkH.C053
+import PINN.ChkH.C054
+import PINN.ChkH.C055
+import PINN.ChkH.C056
+import PINN.ChkH.C057
+import PINN.ChkH.C058
+import PINN.ChkH.C059
+import PINN.ChkH.C060
+import PINN.ChkH.C061
+import PINN.ChkH.C062
+import PINN.ChkH.C063
+import PINN.ChkH.C064
+import PINN.ChkH.C065
+import PINN.ChkH.C066
+import PINN.ChkH.C067
+import PINN.ChkH.C068
+import PINN.ChkH.C069
+import PINN.ChkH.C070
+import PINN.ChkH.C071
+import PINN.ChkH.C072
+import PINN.ChkH.C073
+import PINN.ChkH.C074
+import PINN.ChkH.C075
+import PINN.ChkH.C076
+import PINN.ChkH.C077
+import PINN.ChkH.C078
+import PINN.ChkH.C079
+import PINN.ChkH.C080
+import PINN.ChkH.C081
+import PINN.ChkH.C082
+import PINN.ChkH.C083
+import PINN.ChkH.C084
+import PINN.ChkH.C085
+import PINN.ChkH.C086
+import PINN.ChkH.C087
+import PINN.ChkH.C088
+import PINN.ChkH.C089
+import PINN.ChkH.C090
+import PINN.ChkH.C091
+import PINN.ChkH.C092
+import PINN.ChkH.C093
+import PINN.ChkH.C094
+import PINN.ChkH.C095
+import PINN.ChkH.C096
+import PINN.ChkH.C097
+import PINN.ChkH.C098
+import PINN.ChkH.C099
+import PINN.ChkH.C100
+import PINN.ChkH.C101
+import PINN.ChkH.C102
+import PINN.ChkH.C103
+import PINN.ChkH.C104
+import PINN.ChkH.C105
+import PINN.ChkH.C106
+import PINN.ChkH.C107
+import PINN.ChkH.C108
+
+/-! The certificate for `û`: 652 pieces, 109 kernel-checked chunks. -/
+
+namespace PINN
+
+/-- All pieces, in order. -/
+def certH : List Piece :=
+    ChkH.C000.L ++
+    ChkH.C001.L ++
+    ChkH.C002.L ++
+    ChkH.C003.L ++
+    ChkH.C004.L ++
+    ChkH.C005.L ++
+    ChkH.C006.L ++
+    ChkH.C007.L ++
+    ChkH.C008.L ++
+    ChkH.C009.L ++
+    ChkH.C010.L ++
+    ChkH.C011.L ++
+    ChkH.C012.L ++
+    ChkH.C013.L ++
+    ChkH.C014.L ++
+    ChkH.C015.L ++
+    ChkH.C016.L ++
+    ChkH.C017.L ++
+    ChkH.C018.L ++
+    ChkH.C019.L ++
+    ChkH.C020.L ++
+    ChkH.C021.L ++
+    ChkH.C022.L ++
+    ChkH.C023.L ++
+    ChkH.C024.L ++
+    ChkH.C025.L ++
+    ChkH.C026.L ++
+    ChkH.C027.L ++
+    ChkH.C028.L ++
+    ChkH.C029.L ++
+    ChkH.C030.L ++
+    ChkH.C031.L ++
+    ChkH.C032.L ++
+    ChkH.C033.L ++
+    ChkH.C034.L ++
+    ChkH.C035.L ++
+    ChkH.C036.L ++
+    ChkH.C037.L ++
+    ChkH.C038.L ++
+    ChkH.C039.L ++
+    ChkH.C040.L ++
+    ChkH.C041.L ++
+    ChkH.C042.L ++
+    ChkH.C043.L ++
+    ChkH.C044.L ++
+    ChkH.C045.L ++
+    ChkH.C046.L ++
+    ChkH.C047.L ++
+    ChkH.C048.L ++
+    ChkH.C049.L ++
+    ChkH.C050.L ++
+    ChkH.C051.L ++
+    ChkH.C052.L ++
+    ChkH.C053.L ++
+    ChkH.C054.L ++
+    ChkH.C055.L ++
+    ChkH.C056.L ++
+    ChkH.C057.L ++
+    ChkH.C058.L ++
+    ChkH.C059.L ++
+    ChkH.C060.L ++
+    ChkH.C061.L ++
+    ChkH.C062.L ++
+    ChkH.C063.L ++
+    ChkH.C064.L ++
+    ChkH.C065.L ++
+    ChkH.C066.L ++
+    ChkH.C067.L ++
+    ChkH.C068.L ++
+    ChkH.C069.L ++
+    ChkH.C070.L ++
+    ChkH.C071.L ++
+    ChkH.C072.L ++
+    ChkH.C073.L ++
+    ChkH.C074.L ++
+    ChkH.C075.L ++
+    ChkH.C076.L ++
+    ChkH.C077.L ++
+    ChkH.C078.L ++
+    ChkH.C079.L ++
+    ChkH.C080.L ++
+    ChkH.C081.L ++
+    ChkH.C082.L ++
+    ChkH.C083.L ++
+    ChkH.C084.L ++
+    ChkH.C085.L ++
+    ChkH.C086.L ++
+    ChkH.C087.L ++
+    ChkH.C088.L ++
+    ChkH.C089.L ++
+    ChkH.C090.L ++
+    ChkH.C091.L ++
+    ChkH.C092.L ++
+    ChkH.C093.L ++
+    ChkH.C094.L ++
+    ChkH.C095.L ++
+    ChkH.C096.L ++
+    ChkH.C097.L ++
+    ChkH.C098.L ++
+    ChkH.C099.L ++
+    ChkH.C100.L ++
+    ChkH.C101.L ++
+    ChkH.C102.L ++
+    ChkH.C103.L ++
+    ChkH.C104.L ++
+    ChkH.C105.L ++
+    ChkH.C106.L ++
+    ChkH.C107.L ++
+    ChkH.C108.L
+
+theorem certH_all : certH.all okRH = true := by
+  simp only [certH, List.all_append, ChkH.C000.ok, ChkH.C001.ok, ChkH.C002.ok, ChkH.C003.ok, ChkH.C004.ok, ChkH.C005.ok, ChkH.C006.ok, ChkH.C007.ok, ChkH.C008.ok, ChkH.C009.ok, ChkH.C010.ok, ChkH.C011.ok, ChkH.C012.ok, ChkH.C013.ok, ChkH.C014.ok, ChkH.C015.ok, ChkH.C016.ok, ChkH.C017.ok, ChkH.C018.ok, ChkH.C019.ok, ChkH.C020.ok, ChkH.C021.ok, ChkH.C022.ok, ChkH.C023.ok, ChkH.C024.ok, ChkH.C025.ok, ChkH.C026.ok, ChkH.C027.ok, ChkH.C028.ok, ChkH.C029.ok, ChkH.C030.ok, ChkH.C031.ok, ChkH.C032.ok, ChkH.C033.ok, ChkH.C034.ok, ChkH.C035.ok, ChkH.C036.ok, ChkH.C037.ok, ChkH.C038.ok, ChkH.C039.ok, ChkH.C040.ok, ChkH.C041.ok, ChkH.C042.ok, ChkH.C043.ok, ChkH.C044.ok, ChkH.C045.ok, ChkH.C046.ok, ChkH.C047.ok, ChkH.C048.ok, ChkH.C049.ok, ChkH.C050.ok, ChkH.C051.ok, ChkH.C052.ok, ChkH.C053.ok, ChkH.C054.ok, ChkH.C055.ok, ChkH.C056.ok, ChkH.C057.ok, ChkH.C058.ok, ChkH.C059.ok, ChkH.C060.ok, ChkH.C061.ok, ChkH.C062.ok, ChkH.C063.ok, ChkH.C064.ok, ChkH.C065.ok, ChkH.C066.ok, ChkH.C067.ok, ChkH.C068.ok, ChkH.C069.ok, ChkH.C070.ok, ChkH.C071.ok, ChkH.C072.ok, ChkH.C073.ok, ChkH.C074.ok, ChkH.C075.ok, ChkH.C076.ok, ChkH.C077.ok, ChkH.C078.ok, ChkH.C079.ok, ChkH.C080.ok, ChkH.C081.ok, ChkH.C082.ok, ChkH.C083.ok, ChkH.C084.ok, ChkH.C085.ok, ChkH.C086.ok, ChkH.C087.ok, ChkH.C088.ok, ChkH.C089.ok, ChkH.C090.ok, ChkH.C091.ok, ChkH.C092.ok, ChkH.C093.ok, ChkH.C094.ok, ChkH.C095.ok, ChkH.C096.ok, ChkH.C097.ok, ChkH.C098.ok, ChkH.C099.ok, ChkH.C100.ok, ChkH.C101.ok, ChkH.C102.ok, ChkH.C103.ok, ChkH.C104.ok, ChkH.C105.ok, ChkH.C106.ok, ChkH.C107.ok, ChkH.C108.ok, Bool.and_self]
+
+set_option maxHeartbeats 0 in
+theorem certH_chain : chainOK 0 certH = true := by
+  decide +kernel
+
+set_option maxHeartbeats 0 in
+theorem certH_seq : seqOK 3 zero zero one certH = true := by
+  decide +kernel
+
+end PINN
