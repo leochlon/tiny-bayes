@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use or cite this work, please credit Hassana Labs as below."
-title: "tiny-bayes: Pythia-14M in Lean 4"
+title: "tiny-bayes: Pythia-14M and physics-informed networks in Lean 4"
 authors:
   - name: "Hassana Labs"
 date-released: 2026-11-16

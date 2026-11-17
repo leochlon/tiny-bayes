@@ -86,7 +86,7 @@ If you use or cite this work, please credit Hassana Labs:
 
 ```bibtex
 @misc{hassanalabs2026tinybayes,
-  title  = {tiny-bayes: Pythia-14M in Lean 4},
+  title  = {tiny-bayes: Pythia-14M and physics-informed networks in Lean 4},
   author = {{Hassana Labs}},
   year   = {2026},
   url    = {https://github.com/leochlon/tiny-bayes}
