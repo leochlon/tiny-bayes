@@ -5,7 +5,8 @@
       Builds every module under <dir>/<NS>/ (module <NS>.A.B is the file <dir>/<NS>/A/B.lean) in dependency
       order, at most N Lean processes at once. Incremental: a module is rebuilt when its .olean is missing or older
       than its source or than the .olean of a module it imports. Outputs go to <dir>/.build/. With --only, builds
-      that module and the modules it imports.
+      that module and the modules it imports. With <NS> = ., builds every module under <dir> (module A.B is the file
+      <dir>/A/B.lean).
 
   python3 project.py check <NS> <dir> <tag> [--jobs N]
       Copies the .lean files under <dir>/<NS>/ into a fresh workspace and rejects the development if
@@ -138,8 +139,8 @@ def cmd_build(argv):
     d, side = argv[0], argv[1]
     jobs = int(argv[argv.index("--jobs") + 1]) if "--jobs" in argv else 24
     only = argv[argv.index("--only") + 1] if "--only" in argv else None
-    if side not in SIDES:
-        raise SystemExit("namespace must be PRO, CON or CE")
+    if side not in SIDES + (".",):
+        raise SystemExit("namespace must be PRO, CON, CE, PINN or .")
     root = os.path.abspath(d)
     mods = scan(root, side)
     if not mods:

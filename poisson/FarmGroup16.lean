@@ -1,0 +1,74 @@
+import RawShard1024
+import RawShard1025
+import RawShard1026
+import RawShard1027
+import RawShard1028
+import RawShard1029
+import RawShard1030
+import RawShard1031
+import RawShard1032
+import RawShard1033
+import RawShard1034
+import RawShard1035
+import RawShard1036
+import RawShard1037
+import RawShard1038
+import RawShard1039
+import RawShard1040
+import RawShard1041
+import RawShard1042
+import RawShard1043
+import RawShard1044
+import RawShard1045
+import RawShard1046
+import RawShard1047
+import RawShard1048
+import RawShard1049
+import RawShard1050
+import RawShard1051
+import RawShard1052
+import RawShard1053
+import RawShard1054
+import RawShard1055
+import RawShard1056
+import RawShard1057
+import RawShard1058
+import RawShard1059
+import RawShard1060
+import RawShard1061
+import RawShard1062
+import RawShard1063
+import RawShard1064
+import RawShard1065
+import RawShard1066
+import RawShard1067
+import RawShard1068
+import RawShard1069
+import RawShard1070
+import RawShard1071
+import RawShard1072
+import RawShard1073
+import RawShard1074
+import RawShard1075
+import RawShard1076
+import RawShard1077
+import RawShard1078
+import RawShard1079
+import RawShard1080
+import RawShard1081
+import RawShard1082
+import RawShard1083
+import RawShard1084
+import RawShard1085
+import RawShard1086
+import RawShard1087
+set_option maxRecDepth 100000
+set_option maxHeartbeats 50000000
+namespace PinnCertFarm
+open PinnCert
+def FarmGroup16Cells : List Cell := RawShard1024Cells ++ RawShard1025Cells ++ RawShard1026Cells ++ RawShard1027Cells ++ RawShard1028Cells ++ RawShard1029Cells ++ RawShard1030Cells ++ RawShard1031Cells ++ RawShard1032Cells ++ RawShard1033Cells ++ RawShard1034Cells ++ RawShard1035Cells ++ RawShard1036Cells ++ RawShard1037Cells ++ RawShard1038Cells ++ RawShard1039Cells ++ RawShard1040Cells ++ RawShard1041Cells ++ RawShard1042Cells ++ RawShard1043Cells ++ RawShard1044Cells ++ RawShard1045Cells ++ RawShard1046Cells ++ RawShard1047Cells ++ RawShard1048Cells ++ RawShard1049Cells ++ RawShard1050Cells ++ RawShard1051Cells ++ RawShard1052Cells ++ RawShard1053Cells ++ RawShard1054Cells ++ RawShard1055Cells ++ RawShard1056Cells ++ RawShard1057Cells ++ RawShard1058Cells ++ RawShard1059Cells ++ RawShard1060Cells ++ RawShard1061Cells ++ RawShard1062Cells ++ RawShard1063Cells ++ RawShard1064Cells ++ RawShard1065Cells ++ RawShard1066Cells ++ RawShard1067Cells ++ RawShard1068Cells ++ RawShard1069Cells ++ RawShard1070Cells ++ RawShard1071Cells ++ RawShard1072Cells ++ RawShard1073Cells ++ RawShard1074Cells ++ RawShard1075Cells ++ RawShard1076Cells ++ RawShard1077Cells ++ RawShard1078Cells ++ RawShard1079Cells ++ RawShard1080Cells ++ RawShard1081Cells ++ RawShard1082Cells ++ RawShard1083Cells ++ RawShard1084Cells ++ RawShard1085Cells ++ RawShard1086Cells ++ RawShard1087Cells
+theorem FarmGroup16Valid : ValidCells FarmGroup16Cells := by
+  unfold FarmGroup16Cells
+  simp only [List.append_assoc]
+  exact (valid_append RawShard1024Valid (valid_append RawShard1025Valid (valid_append RawShard1026Valid (valid_append RawShard1027Valid (valid_append RawShard1028Valid (valid_append RawShard1029Valid (valid_append RawShard1030Valid (valid_append RawShard1031Valid (valid_append RawShard1032Valid (valid_append RawShard1033Valid (valid_append RawShard1034Valid (valid_append RawShard1035Valid (valid_append RawShard1036Valid (valid_append RawShard1037Valid (valid_append RawShard1038Valid (valid_append RawShard1039Valid (valid_append RawShard1040Valid (valid_append RawShard1041Valid (valid_append RawShard1042Valid (valid_append RawShard1043Valid (valid_append RawShard1044Valid (valid_append RawShard1045Valid (valid_append RawShard1046Valid (valid_append RawShard1047Valid (valid_append RawShard1048Valid (valid_append RawShard1049Valid (valid_append RawShard1050Valid (valid_append RawShard1051Valid (valid_append RawShard1052Valid (valid_append RawShard1053Valid (valid_append RawShard1054Valid (valid_append RawShard1055Valid (valid_append RawShard1056Valid (valid_append RawShard1057Valid (valid_append RawShard1058Valid (valid_append RawShard1059Valid (valid_append RawShard1060Valid (valid_append RawShard1061Valid (valid_append RawShard1062Valid (valid_append RawShard1063Valid (valid_append RawShard1064Valid (valid_append RawShard1065Valid (valid_append RawShard1066Valid (valid_append RawShard1067Valid (valid_append RawShard1068Valid (valid_append RawShard1069Valid (valid_append RawShard1070Valid (valid_append RawShard1071Valid (valid_append RawShard1072Valid (valid_append RawShard1073Valid (valid_append RawShard1074Valid (valid_append RawShard1075Valid (valid_append RawShard1076Valid (valid_append RawShard1077Valid (valid_append RawShard1078Valid (valid_append RawShard1079Valid (valid_append RawShard1080Valid (valid_append RawShard1081Valid (valid_append RawShard1082Valid (valid_append RawShard1083Valid (valid_append RawShard1084Valid (valid_append RawShard1085Valid (valid_append RawShard1086Valid RawShard1087Valid)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+end PinnCertFarm

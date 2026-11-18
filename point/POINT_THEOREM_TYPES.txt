@@ -1,0 +1,28 @@
+{"module": "FinalPoint", "argv": ["lean", "-j1", "-o", "/srv/erdos-lean/workspaces/neural_cert_completion_20261118/pythia/PRO/.build/FinalPoint.olean", "/srv/erdos-lean/workspaces/neural_cert_completion_20261118/pythia/PRO/FinalPoint.lean"], "source_sha256": "aa15a8992ed382f8e888410917902bad661d476ed8321dd33e9772f067d688a6", "exit_code": 0, "seconds": 8.98646927500522}
+PythiaCert.actual_center_hidden_enclosed : List.Forall₂ Encloses (CON.lastHidden CON.pythia14m tokens) Output.center
+PythiaCert.actual_witness_hidden_enclosed :
+  List.Forall₂ Encloses (CON.lastHiddenFrom CON.pythia14m witnessInput) Output.witness
+PythiaCert.actual_witness_gap :
+  1 / 20 ≤ CON.logitFrom CON.pythia14m witnessInput 10895 - CON.logitFrom CON.pythia14m witnessInput 10166
+'PythiaCert.actual_center_hidden_enclosed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PythiaCert.actual_witness_hidden_enclosed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PythiaCert.actual_witness_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+{"module": "PointCertificate", "argv": ["lean", "-j1", "-o", "/srv/erdos-lean/workspaces/neural_cert_completion_20261118/pythia/PRO/.build/PointCertificate.olean", "/srv/erdos-lean/workspaces/neural_cert_completion_20261118/pythia/PRO/PointCertificate.lean"], "source_sha256": "bca5f6cab988f27b5b61530ba5602c8fe449a87b0c7592bc9ba029bc73351bb5", "exit_code": 0, "seconds": 7.403459820001444}
+PythiaCert.actual_center_margin (j : Fin 50304) :
+  ↑j ≠ 10166 → 2 ≤ CON.logit CON.pythia14m tokens 10166 - CON.logit CON.pythia14m tokens ↑j
+'PythiaCert.actual_center_margin' depends on axioms: [propext, Classical.choice, Quot.sound]
+PythiaCert.actual_witness_gap :
+  1 / 20 ≤ CON.logitFrom CON.pythia14m witnessInput 10895 - CON.logitFrom CON.pythia14m witnessInput 10166
+'PythiaCert.actual_witness_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+{"module": "PointPair", "argv": ["lean", "-j1", "-o", "/srv/erdos-lean/workspaces/neural_cert_completion_20261118/pythia/PRO/.build/PointPair.olean", "/srv/erdos-lean/workspaces/neural_cert_completion_20261118/pythia/PRO/PointPair.lean"], "source_sha256": "b9cb17e0e19c374cac9220daacff27fa225d36076e591125b06447e3a579feae", "exit_code": 0, "seconds": 5.828793538996251}
+PythiaCert.actual_frozen_point_pair :
+  (∀ (j : Fin 50304), ↑j ≠ 10166 → 2 ≤ CON.logit CON.pythia14m tokens 10166 - CON.logit CON.pythia14m tokens ↑j) ∧
+    ‖witnessVector‖ = 37 / 16384 ∧
+      1 / 20 ≤
+        CON.logitFrom CON.pythia14m (perturbInput witnessVector) 10895 -
+          CON.logitFrom CON.pythia14m (perturbInput witnessVector) 10166
+'PythiaCert.actual_frozen_point_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+BUILD_LOG /srv/erdos-lean/workspaces/neural_cert_completion_20261118/pythia/PRO/logs/20261118T093941_154276

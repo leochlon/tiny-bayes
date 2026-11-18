@@ -1,6 +1,6 @@
 # tiny-bayes
 
-Pythia-14M in Lean 4, by Hassana Labs. EleutherAI/pythia-14m (revision `cf967c0a9a04383db6f7b1108d86b2962634b4ac`) defined exactly over ℝ in Lean 4 and Mathlib: all 14,067,712 parameters as float16 bit patterns, decoded exactly, and the GPT-NeoX forward pass with exact GELU. Every theorem in each folder's `Main.lean` depends only on `propext`, `Classical.choice` and `Quot.sound`.
+Pythia-14M in Lean 4, by Hassana Labs. EleutherAI/pythia-14m (revision `cf967c0a9a04383db6f7b1108d86b2962634b4ac`) defined exactly over ℝ in Lean 4 and Mathlib: all 14,067,712 parameters as float16 bit patterns, decoded exactly, and the GPT-NeoX forward pass with exact GELU. Every theorem in each folder's `Main.lean`, and every final theorem of `point/` and `poisson/`, depends only on `propext`, `Classical.choice` and `Quot.sound`.
 
 | Folder | Namespace | Contents | Modules | Theorems | Build |
 |---|---|---|---|---|---|
@@ -10,8 +10,10 @@ Pythia-14M in Lean 4, by Hassana Labs. EleutherAI/pythia-14m (revision `cf967c0a
 | `induction/lower_bound/` | `PRO` | normal form; `CleanCert → ClaimAt 9` | 117 | 29 | 40 s |
 | `collapse/` | `CE` | repetition theorems for every set of weights | 4 | 3 | 35 s |
 | `pinn/` | `PINN` | physics-informed networks certified through their residuals | 207 | 18 | 3 min |
+| `point/` | `PythiaCert` | a full-vocabulary decision and an adversarial example on a 32-token prompt | 1,567 | 5 | 19.5 CPU h |
+| `poisson/` | `PoissonR3` | error bound for a trained PINN on the whole unit square | 2,463 | 6 | 42.7 CPU h |
 
-Build times are from scratch with 24 to 40 parallel Lean processes.
+Build times are from scratch with 24 to 40 parallel Lean processes; for `point/` and `poisson/`, total CPU time.
 
 ## Model (`exact/CON`)
 - `W/`: one `Nat` per row of float16 bits; `F16.lean` decodes them; `Pythia.lean` assembles `pythia14m`.
@@ -69,6 +71,48 @@ The residual bound on each piece is a kernel-checked mean-value enclosure: the r
 
 `scripts/` has the training scripts, a 50-digit reference evaluation of both models and their residuals (`reference.py`), an exact Python copy of the interval arithmetic (`mirror.py`), and the scripts that regenerate the certificate modules (run from `pinn/`: `python3 scripts/partition.py 9e-5 1.1e-4 cert.json && python3 scripts/emit.py cert.json`).
 
+## Decision and adversarial example (`point/`)
+`tokens` (`Input.lean`) is a 32-token prompt, BOS first. `perturbInput δ` adds δ : Fin 128 → ℝ to the input embedding at position 31, before the first layer; `witnessVector` (`WitnessNorm.lean`) is a fixed dyadic vector, and its norm is the sup norm.
+
+```lean
+theorem actual_frozen_point_pair :
+    (∀ j : Fin 50304, j.val ≠ 10166 →
+      (2 : ℝ) ≤ CON.logit CON.pythia14m tokens 10166 -
+        CON.logit CON.pythia14m tokens j.val) ∧
+    ‖witnessVector‖ = (37/16384 : ℝ) ∧
+    (1/20 : ℝ) ≤
+      CON.logitFrom CON.pythia14m (perturbInput witnessVector) 10895 -
+        CON.logitFrom CON.pythia14m (perturbInput witnessVector) 10166
+```
+
+- `actual_center_margin` (`PointCertificate.lean`): token 10166 beats each of the other 50,303 logits by at least 2.
+- `actual_center_hidden_enclosed`, `actual_witness_hidden_enclosed`: the final hidden states at the prompt and at the perturbed input lie in the stored boxes `Output.center` and `Output.witness`.
+- `CON/` holds the model, the float16 decoder (`F16.lean`) and the 403 parameter modules (`CON/W/`). `PointChecks/` (694 modules) checks the forward pass layer by layer, `OutputChecks/` (197) the unembedding over the vocabulary, and `PointData/` (198) holds the boxes they check.
+- `POINT_THEOREM_TYPES.txt`: each final theorem's statement and axioms, as printed by the build.
+- `checkpoint_binding.json`: the SHA-256 of `model.safetensors` and the shape, byte offsets and SHA-256 of each of its 76 tensors. `INDEPENDENT_CHECKPOINT_PROVENANCE.json` rebuilds every tensor's bytes from the literals in `CON/W/` (401 files, each with its SHA-256) and matches all 76 hashes.
+
+## Poisson PINN (`poisson/`)
+N(x, y) = p(x)p(y)(b₀ + Σₕ aₕ tanh(wₕ₁x + wₕ₂y + bₕ)), with p(t) = t(1 − t), 16 tanh units and 65 weights over 2²⁴ (`Frozen.lean`), solves −Δu = f on (0, 1)² with u = 0 on the boundary. U(x, y) = p(x)p(y)e^{xy}, f = −ΔU (`manufactured_pde`), Q = [0, 1]² and `witness` = (100/256, 97/256).
+
+```lean
+theorem frozen_bracket
+    (u : ℝ → ℝ → ℝ)
+    (hcu : ContinuousOn (fun z : ℝ × ℝ => u z.1 z.2) Q) (hdu : CoordTwoOn u)
+    (hbu : ∀ z ∈ Q, Edge z → u z.1 z.2=0)
+    (hpu : ∀ x y, x ∈ Ioo (0:ℝ) 1 → y ∈ Ioo (0:ℝ) 1 → -Lap u x y=forcing x y) :
+    (∀ z ∈ Q, |N z.1 z.2-u z.1 z.2| ≤ certU) ∧
+      certL ≤ |N witness.1 witness.2-u witness.1 witness.2|
+
+theorem frozen_reference_accuracy :
+    (∀ z ∈ Q, |N z.1 z.2-U z.1 z.2| < (1:ℝ)/30000) ∧
+      (1:ℝ)/80000 ≤ |N witness.1 witness.2-U witness.1 witness.2|
+```
+
+- `PinnCertFarm.hres`: |−Δ(N − C) − f| ≤ certR on (0, 1)², for the polynomial correction C (`Correction.lean`). The square is covered by 9,163 closed cells (`exact_cover_leaf_count`), checked in 2,291 shards (`RawShard*.lean`) and assembled by `allValid` and `hres_closed`.
+- `hC`: |C| ≤ certA on Q. A maximum-principle bound with barrier constant 3/40 (`Maximum.lean`) turns certR into the error bound certU = certA + 3·certR/40; `hpoint` gives the lower bound at `witness`. The constants are integers over 2⁶⁴ (`Candidate.lean`), and certU/certL < 2.52.
+- `frozen_reference_bracket`: `frozen_bracket` for U, which `reference_is_solution` proves is a solution.
+- `FINAL_THEOREM_TYPES.txt`: each final theorem's statement and axioms, as printed by the build.
+
 ## Build
 Lean v4.27.0-rc1 and Mathlib `fdddb3ea` (`lean-toolchain`, `lake-manifest.json`; `lake exe cache get` fetches a prebuilt Mathlib). Set `LEAN_BIN` to the `lean` binary and `LEAN_BASE_PATH` to the output of `lake env printenv LEAN_PATH`, then:
 
@@ -81,6 +125,8 @@ python3 tools/project.py build induction/upper_bound CON --jobs 24
 python3 tools/project.py build induction/lower_bound PRO --jobs 24
 python3 tools/project.py build collapse CE --jobs 8
 python3 tools/project.py build pinn PINN --jobs 40
+python3 tools/project.py build point . --jobs 40
+python3 tools/project.py build poisson . --jobs 40
 ```
 
 `python3 tools/project.py check <NS> <dir> <tag>` rebuilds a folder from scratch in a fresh workspace, rejects `sorry`, `axiom`, `native_decide` and similar escapes, and prints each theorem of `Main.lean` with the axioms it depends on. `tools/gen_weights.py` and `tools/gen_bits.py` regenerate `W/` and `Bits/` from `model.safetensors`.
