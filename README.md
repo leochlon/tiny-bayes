@@ -73,8 +73,6 @@ Statements, files and scripts for each folder are in [`pythia/README.md`](pythia
 Lean v4.27.0-rc1 and Mathlib `fdddb3ea` (`lean-toolchain`, `lake-manifest.json`); `lake exe cache get` fetches a prebuilt Mathlib. Set `LEAN_BIN` to the `lean` binary and `LEAN_BASE_PATH` to the output of `lake env printenv LEAN_PATH`, then:
 
 ```sh
-sh pythia/induction/restore_weights.sh        # copies pythia/exact/CON/W into both induction folders
-shasum -a 256 -c SHA256SUMS
 python3 tools/project.py build pythia/collapse CE --jobs 8
 ```
 
