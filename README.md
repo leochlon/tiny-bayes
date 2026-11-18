@@ -32,6 +32,7 @@ Does the tiny-transformer result (a separate Lean development, `TinyBayes`: orde
 - `main`: 0.4076930531 ≤ p [] ≤ 0.4076930534, from 25 kernel checks composed by `layer_ok`.
 - `main8 : Cert8 → TinyTheorem p 8 0.143 0.073 0.52`: on all 45 bags with n ≤ 8, the order averages are within 0.143 of Laplace's rule and 0.073 of Beta(2, 9/4), with an order gap of 0.52.
 - `con_criterion_rejects_exact_bayes`: the 0.0034 Laplace criterion of `exact/` rejects the Jeffreys posterior predictive for every ε < 1/12.
+- `scripts/red_blue_table.py`: float64 evaluation of the Hugging Face model on the 511 prompts with n ≤ 8; prints the 45 order averages in the layout of `tbl` and checks them against it, their deviations from Laplace's rule (the orange points of Figure 2) and the order gap of `Numerics8`.
 
 At the tiny model's tolerance of 0.0034 the result does not extend to Pythia-14M.
 
@@ -40,6 +41,9 @@ Claim: there are V′ ⊆ V with |V′| ≥ 1,000 and δ > 0 such that, for ever
 - `upper_bound/`: `main : TripleCert → ¬Claim`. `TripleCert` lists 638,716 statements "pythia-14m fails on some order of these three tokens" over 167 token groups; the combinatorics are kernel-checked (`search_ok`, `search_sound`, `cover_ok`, `caps3_total`, `capacities_exclude`). `main_bound3`: under `TripleCert`, induction fails on every subset of V with more than 941 tokens; `main_bound`: 831 under `GroupCert` (sequences of up to five tokens).
 - `lower_bound/`: `claim_iff_normalForm` (the margin plays no role; each case is one next-token comparison on a prompt of 6 to 16 tokens), `cleanCert_claimAt : CleanCert → ClaimAt 9` (nine named tokens), `bracket`.
 - The two formalisations are proved equivalent (`PRO.claim_iff_opp`, `CON.pro_claim_iff`).
+- `scripts/triple_search.py`: the float32 search that produces `freeMasks` from the groups of `Data.lean`, and a float64 recheck of the failing order and competitor it finds for each `TripleCert` statement.
+- `scripts/triple_cert.py`: float64 check of every `TripleCert` statement, all six orders against all 50,304 logits (`--sample N` for a random subset).
+- `scripts/clean_cert.py`: float64 check of the 623,448 sequences of `CleanCert` against all 50,304 logits.
 
 ## Collapse (`collapse/`)
 For every set of weights (`= t` elaborates to `= some t`):
