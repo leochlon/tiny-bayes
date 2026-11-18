@@ -1,8 +1,29 @@
 cff-version: 1.2.0
-message: "If you use or cite this work, please credit Hassana Labs as below."
+message: "If you use this work, please cite the preprint below."
 title: "tiny-bayes: Pythia-14M and physics-informed networks in Lean 4"
 authors:
-  - name: "Hassana Labs"
+  - family-names: Karim
+    given-names: Ahmed
+    affiliation: "Hassana Labs"
+  - family-names: Chlon
+    given-names: Leon
+    affiliation: "Hassana Labs"
 date-released: 2026-11-16
 url: "https://github.com/leochlon/tiny-bayes"
 license: CC-BY-NC-4.0
+preferred-citation:
+  type: generic
+  title: "Theorems, Not Tests: Kernel-Checked Guarantees for a Pretrained Language Model and a Neural PDE Solver"
+  authors:
+    - family-names: Karim
+      given-names: Ahmed
+      affiliation: "Hassana Labs"
+    - family-names: Chlon
+      given-names: Leon
+      affiliation: "Hassana Labs"
+  year: 2026
+  month: 11
+  doi: 10.5281/zenodo.24346623
+  url: "https://doi.org/10.5281/zenodo.24346623"
+  publisher:
+    name: Zenodo
