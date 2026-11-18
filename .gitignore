@@ -3,3 +3,4 @@ _check/
 .lake/
 __pycache__/
 .DS_Store
+pythia/induction/*/*/W/

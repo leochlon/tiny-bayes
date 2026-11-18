@@ -1,4 +1,4 @@
-"""The float32 search behind `freeMasks` (induction/upper_bound/CON/Data.lean), and a float64 recheck
+"""The float32 search behind `freeMasks` (pythia/induction/upper_bound/CON/Data.lean), and a float64 recheck
 of the failures it finds.
 
 The token set V and its split into 167 groups are read from Data.lean. For every group and every
@@ -15,8 +15,8 @@ Prints the number of groups, triples and failing triples (= `TripleCert` stateme
 masks equal `freeMasks` in Data.lean (and how many bits differ), and the largest float64 witness
 margin, i.e. how far below its competitor's logit every target is at least.
 
-Usage (from the release folder):
-  python3 induction/scripts/triple_search.py [--model DIR] [--witnesses FILE]
+Usage (from the repository root):
+  python3 pythia/induction/scripts/triple_search.py [--model DIR] [--witnesses FILE]
 --model: a local copy of EleutherAI/pythia-14m; without it the model is downloaded from Hugging Face
 at revision cf967c0a9a04383db6f7b1108d86b2962634b4ac. --witnesses: write the witnesses as JSON,
 one [x, y, z, competitor, float32 margin, float64 margin] per failing triple.

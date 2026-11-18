@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copies the weight modules exact/CON/W into both induction developments (namespace PRO in lower_bound).
+# Copies the weight modules pythia/exact/CON/W into both induction developments (namespace PRO in lower_bound).
 set -e
 cd "$(dirname "$0")"
 rm -rf upper_bound/CON/W lower_bound/PRO/W

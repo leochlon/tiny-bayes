@@ -1,5 +1,5 @@
 """Write a certificate from partition.py as the Lean modules PINN/ChkN, PINN/ChkH, PINN/DataN.lean and
-PINN/DataH.lean. Run from pinn/: python3 scripts/emit.py cert.json [output root, default PINN]"""
+PINN/DataH.lean. Run from pinn/ode/: python3 scripts/emit.py cert.json [output root, default PINN]"""
 import json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import mirror as m

@@ -1,4 +1,4 @@
-"""Order averages of Pythia-14M on the red/blue encoding: the table `tbl` of interval/PRO/Claim.lean.
+"""Order averages of Pythia-14M on the red/blue encoding: the table `tbl` of pythia/interval/PRO/Claim.lean.
 
 For every binary sequence x with |x| <= 8 the prompt is <|endoftext|> (id 0) followed by " red,"
 (ids 2502, 13) for each 1 and " blue," (ids 4797, 13) for each 0, and
@@ -11,7 +11,7 @@ of an average from a rounding boundary, each average's deviation from Laplace's 
 (the orange points of Figure 2), the largest deviations from Laplace's rule and from the Beta(2, 9/4)
 predictive (4k+8)/(4n+17), and the order gap p(00001111) - p(11110000) of `Numerics8`.
 
-Usage (from the release folder): python3 interval/scripts/red_blue_table.py [--model DIR] [--out FILE]
+Usage (from the repository root): python3 pythia/interval/scripts/red_blue_table.py [--model DIR] [--out FILE]
 --model: a local copy of EleutherAI/pythia-14m; without it the model is downloaded from Hugging Face
 at revision cf967c0a9a04383db6f7b1108d86b2962634b4ac. --out: write p(x) for all 511 sequences as JSON.
 """

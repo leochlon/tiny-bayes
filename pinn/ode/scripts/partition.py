@@ -1,5 +1,5 @@
 """Partition [0, 4] by binary search for the longest pieces whose residual enclosure has width <= delta, then
-check the bounds at every partition point. Run from pinn/: python3 scripts/partition.py 9e-5 1.1e-4 cert.json"""
+check the bounds at every partition point. Run from pinn/ode/: python3 scripts/partition.py 9e-5 1.1e-4 cert.json"""
 import json, os, sys, time
 from multiprocessing import Pool
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

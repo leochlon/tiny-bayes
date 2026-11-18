@@ -1,4 +1,4 @@
-"""Float64 check of `CleanCert` (induction/lower_bound/PRO/Main.lean).
+"""Float64 check of `CleanCert` (pythia/induction/lower_bound/PRO/Main.lean).
 
 For every list r of m distinct tokens of `cleanSet` with 3 <= m <= 8 (623,448 lists) and every k with
 2 <= k <= m - 1, the prompt is [0] + r + r[:k] and the margin is the logit of r[k] (0-based, the
@@ -8,7 +8,7 @@ token after the second r_k) minus the largest logit of the other 50,303 tokens a
 Prints, for each m, the number of lists, the number of lists with some margin <= 0 and the smallest
 margin; then the totals and the list and k with the smallest margin.
 
-Usage (from the release folder): python3 induction/scripts/clean_cert.py [--model DIR] [--batch B]
+Usage (from the repository root): python3 pythia/induction/scripts/clean_cert.py [--model DIR] [--batch B]
 --model: a local copy of EleutherAI/pythia-14m; without it the model is downloaded from Hugging Face
 at revision cf967c0a9a04383db6f7b1108d86b2962634b4ac.
 """

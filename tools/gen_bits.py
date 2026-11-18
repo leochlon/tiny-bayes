@@ -1,5 +1,5 @@
 # Usage: gen_bits.py <dir containing model.safetensors> <out dir>
-# Writes <out>/Bits/*.lean: the float16 bits of the six layers and the rows used by interval/.
+# Writes <out>/Bits/*.lean: the float16 bits of the six layers and the rows used by pythia/interval/.
 import numpy as np, os, sys
 from safetensors.numpy import load_file
 P, OUT = sys.argv[1], sys.argv[2]  # dir containing model.safetensors, output dir

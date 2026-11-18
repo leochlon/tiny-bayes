@@ -1,4 +1,4 @@
-"""Float64 check of `TripleCert` (induction/upper_bound/CON/Main.lean) against the full vocabulary.
+"""Float64 check of `TripleCert` (pythia/induction/upper_bound/CON/Main.lean) against the full vocabulary.
 
 The statements are read from Data.lean: one for each group c and positions i < j < l whose bit in
 `freeMasks[c]` is clear (638,716 in all). Statement (a, b, c) says that for some order x, y, z of the
@@ -11,8 +11,8 @@ Prints the number of groups and statements checked, the number that hold, the sm
 over statements (how far below a competitor's logit the target lies, at least, in the most favourable
 order), and the statements with the smallest best margins.
 
-Usage (from the release folder):
-  python3 induction/scripts/triple_cert.py [--model DIR] [--sample N] [--seed S] [--out FILE]
+Usage (from the repository root):
+  python3 pythia/induction/scripts/triple_cert.py [--model DIR] [--sample N] [--seed S] [--out FILE]
 --model: a local copy of EleutherAI/pythia-14m; without it the model is downloaded from Hugging Face
 at revision cf967c0a9a04383db6f7b1108d86b2962634b4ac. --sample: check a uniform random sample of N
 statements instead of all of them. --out: write [a, b, c, x, y, z, competitor, best margin] for every
